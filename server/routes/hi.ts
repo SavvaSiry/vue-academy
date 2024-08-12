@@ -1,5 +1,8 @@
-export default defineEventHandler((event) => {
+export default defineEventHandler((event: Event) => {
     return {
-        message: 'Hi!'
+        message: 'Hi!',
+        test: {
+            test: 'test'
+        }
     }
 })

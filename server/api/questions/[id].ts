@@ -1,6 +1,6 @@
 import questions from "~/data/questions.json";
 
-export default defineEventHandler((event) => {
+export default defineEventHandler((event: Event) => {
     const id = getRouterParam(event, 'id');
 
     if (!id) {

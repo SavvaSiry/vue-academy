@@ -1,7 +1,6 @@
 import questions from "~/data/questions.json";
-import {H3Event} from "h3";
 
-export default defineEventHandler((event: H3Event) => {
+export default defineEventHandler((event: Event) => {
     const randomQuestionId = getRandomIntInclusive(0, questions.length);
     return questions.find(que => que.id === randomQuestionId);
 })

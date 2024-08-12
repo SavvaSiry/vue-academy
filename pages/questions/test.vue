@@ -8,11 +8,19 @@
     <code>
       {{ data }}
     </code>
+    <br>
+     <button @click="fetchQuestions">
+       Fetch
+     </button>
   </section>
 </template>
 
 <script setup>
-const { data } = useFetch('/api/questions/test');
+const data = ref('');
+
+const fetchQuestions = async () => {
+  data.value = await $fetch('/api/questions/test');
+}
 
 </script>
 
