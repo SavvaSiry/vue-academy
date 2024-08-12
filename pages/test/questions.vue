@@ -18,6 +18,7 @@ let { data: QuestionsResults, error } = await client
 
 
 const answer = async () => {
+
   const {data} = await client
       .from('QuestionsResults')
       .insert([

@@ -1,45 +1,43 @@
 <template>
-  <h1>
-    Questions
-  </h1>
+  <h1>Hello, bro!</h1>
+  <br>
+  <ClientOnly>
+    <code>{{ user }}</code>
+  </ClientOnly>
+  <br>
+  <br>
+  <button
+      v-if="!user"
+      @click="auth.signInWithOAuth({ provider: 'github', options: { redirectTo } })"
+  >
+    Log In via GitHub
+  </button>
+  <template v-else>
+    <button
+      @click="navigateTo('/questions')"
+    >
+      start
+    </button>
+    <button
+        @click="auth.signOut()"
+    >
+      Log Out
+    </button>
+  </template>
 
-  <section>
-    <h2>Случайный вопрос</h2>
-    <div v-if="!pending">
-      <h3>{{ randomQuestion.question }}</h3>
-      <div>{{ randomQuestion.answer }}</div>
-      <br>
-      <button @click="getRandomQuestion()">Поменять вопрос</button>
-    </div>
-    <div v-else>
-      ...
-    </div>
-  </section>
-
-  <section>
-    <h2>Лист вопросов</h2>
-    <ul>
-      <li v-for="qes in data.questions" :key="qes.id">
-        <h3>{{ qes.question }}</h3>
-        <div>{{ qes.answer }}</div>
-        <NuxtLink :to="`/questions/${qes.id}`">К вопросу</NuxtLink>
-      </li>
-    </ul>
-  </section>
 </template>
 
-<script setup>
-const {data} = useFetch('/api/questions');
+<script setup lang="ts">
+const user = useSupabaseUser()
+const {auth} = useSupabaseClient()
 
-const {data: randomQuestion, pending} = useFetch('/api/questions/random', {
-  lazy: true,
-})
+const redirectTo = `${useRuntimeConfig().public.baseUrl}/confirm`
 
-async function getRandomQuestion() {
-  randomQuestion.value = await $fetch('/api/questions/random');
-}
-
-
+// watchEffect(() => {
+//   if (user.value) {
+//     navigateTo('/test/questions')
+//   }
+// })
 </script>
 
 <style scoped>
