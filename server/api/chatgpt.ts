@@ -16,7 +16,7 @@ export default defineEventHandler(async (event: Event) => {
             model: 'gpt-3.5-turbo', // или 'gpt-4'
             messages: [
                 { role: 'system', content: 'You are an expert in Vue.js, JavaScript, and Nuxt.js. Please provide concise and accurate responses in JSON format.' },
-                { role: 'user', content: body.question },
+                { role: 'user', content: 'Дай случайный вопрос в формтае Json.' },
             ],
         });
 
