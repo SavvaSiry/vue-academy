@@ -1,7 +1,7 @@
 import OpenAI from 'openai';
 
 export default defineEventHandler(async (event: Event) => {
-    const body = await readBody(event);
+    // const body = await readBody(event);
 
     // Создаем экземпляр клиента OpenAI с использованием ключа API
     const openai = new OpenAI({

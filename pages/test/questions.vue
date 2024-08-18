@@ -14,7 +14,7 @@ const client = useSupabaseClient();
 
 let { data: QuestionsResults, error } = await client
     .from('QuestionsResults')
-    .select('*')
+    .select('*');
 
 
 const answer = async () => {
