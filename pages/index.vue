@@ -24,14 +24,14 @@
       Log Out
     </button>
   </template>
-
 </template>
 
 <script setup lang="ts">
 const user = useSupabaseUser()
 const {auth} = useSupabaseClient()
 
-const redirectTo = `${useRuntimeConfig().public.baseUrl}/confirm`
+const route = useRoute();
+const redirectTo = `${route.fullPath}/confirm`
 
 // watchEffect(() => {
 //   if (user.value) {
